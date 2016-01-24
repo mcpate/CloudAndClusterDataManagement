@@ -1,0 +1,4 @@
+Data Model - General Thoughts
+- Key/Value would probably work fine.
+- Document would work fine
+- Column or "Big Table" might be a little overkill/complicated for "first stab"
