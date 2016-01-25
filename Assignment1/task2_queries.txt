@@ -1,4 +1,9 @@
 a) Count high speeds: Find the number of speeds > 100 in the data set.
+      In the FREEWAY_LOOPDATA table,
+         for all rows{
+            if SPEED > 100
+               increment counter
+         }
 b) Volume: Find the total volume for the station "Foster NB" for Sept 21, 2011.
 c) Peak Period Travel Times: Find the average travel time for 7-9AM and 4-6PM 
    on September 22, 20011 for station Foster NB. Report travel time in seconds.
