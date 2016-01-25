@@ -1,0 +1,9 @@
+a) Count high speeds: Find the number of speeds > 100 in the data set.
+b) Volume: Find the total volume for the station "Foster NB" for Sept 21, 2011.
+c) Peak Period Travel Times: Find the average travel time for 7-9AM and 4-6PM 
+   on September 22, 20011 for station Foster NB. Report travel time in seconds.
+   You should have one average travvel time for 7-9AM and one average travel 
+   time for 4-6PM.
+d) Route Finding: Find a route from Johnson Creek to Columbia Blvd on I-205 NB
+   using the upstream and downstream fields.
+e) Update: Update stationid 1140 to have a length of 2.3.
