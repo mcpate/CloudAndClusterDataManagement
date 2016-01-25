@@ -15,9 +15,11 @@ b) Volume: Find the total volume for the station "Foster NB" for Sept 21, 2011.
             for all rows where STATION_ID == FS_ID{
                   FD_ID = DETECTOR_ID
                   In the FREEWAY_LOOPDATA table:
-                        for all rows where DETECTOR_ID = FD_ID
+                        for all rows where DETECTOR_ID = FD_ID{
                               if STARTTIME includes 9/21/2011
                                     TOTAL_VOLUME = TOTAL_VOLUME + VOLUME
+                         }
+            }
             
 c) Peak Period Travel Times: Find the average travel time for 7-9AM and 4-6PM 
    on September 22, 20011 for station Foster NB. Report travel time in seconds.
