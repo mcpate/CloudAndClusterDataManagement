@@ -26,9 +26,15 @@ c) Peak Period Travel Times: Find the average travel time for 7-9AM and 4-6PM
    You should have one average travvel time for 7-9AM and one average travel 
    time for 4-6PM.
      In the FREEWAY_STATIONS table,
-          scan LOCATION_TEXT for "Foster NB"
+          scan LOCATION_TEXT column for "Foster NB"
                STATION_ID_KEY = FREEWAY_STATIONS.STATION_ID
                LENGTH = FREEWAY_STATIONS.LENGTH
+     In the FREEWAY_DETECTOR & FREEWAY_LOOPDATA tables          
+          for each DETECTORID associated with STATION_ID_KEY{
+              DETECTOR_AVERAGE = average all SPEEDs within TIME_SPECIFIED.  
+          TOTAL_AVERAGE = average of all DETECTOR_AVERAGE's
+          
+     (LENGTH / TOTAL_AVERAGE) * (3660)
                
 d) Route Finding: Find a route from Johnson Creek to Columbia Blvd on I-205 NB
    using the upstream and downstream fields.
