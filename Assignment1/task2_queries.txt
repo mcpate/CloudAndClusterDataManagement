@@ -1,0 +1,43 @@
+a) Count high speeds: Find the number of speeds > 100 in the data set.
+     
+      In the FREEWAY_LOOPDATA table,
+            for all rows{
+                  if SPEED > 100
+                  increment counter
+            return counter
+         }
+b) Volume: Find the total volume for the station "Foster NB" for Sept 21, 2011.
+     
+      In the FREEWAY_STATIONS table,
+            scan LOCATION_TEXT column for "Foster NB"
+                  FS_ID = Station_ID
+      In the FREEWAY_DETECTORS table,
+            for all rows where STATION_ID == FS_ID{
+                  FD_ID = DETECTOR_ID
+                  In the FREEWAY_LOOPDATA table:
+                        for all rows where DETECTOR_ID = FD_ID{
+                              if STARTTIME includes 9/21/2011
+                                    TOTAL_VOLUME = TOTAL_VOLUME + VOLUME
+                         }
+            }
+            
+c) Peak Period Travel Times: Find the average travel time for 7-9AM and 4-6PM 
+   on September 22, 20011 for station Foster NB. Report travel time in seconds.
+   You should have one average travvel time for 7-9AM and one average travel 
+   time for 4-6PM.
+     In the FREEWAY_STATIONS table,
+          scan LOCATION_TEXT for "Foster NB"
+               STATION_ID_KEY = FREEWAY_STATIONS.STATION_ID
+               LENGTH = FREEWAY_STATIONS.LENGTH
+               
+d) Route Finding: Find a route from Johnson Creek to Columbia Blvd on I-205 NB
+   using the upstream and downstream fields.
+     In the FREEWAY_STATIONS table,
+          next_station_id = downstream where locationtext == "Johnson Cr NB"
+          while (locationtext != "Columbia to I-205 NB" where stationid == next_station_id){
+               next_station_id = downstream
+          }
+
+e) Update: Update stationid 1140 to have a length of 2.3.
+     In the FREEWAY_STATIONS table
+          set (1140, 2.3)
