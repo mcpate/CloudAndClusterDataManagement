@@ -32,7 +32,12 @@ c) Peak Period Travel Times: Find the average travel time for 7-9AM and 4-6PM
                
 d) Route Finding: Find a route from Johnson Creek to Columbia Blvd on I-205 NB
    using the upstream and downstream fields.
-   
+     In the FREEWAY_STATIONS table,
+          next_station_id = downstream where locationtext == "Johnson Cr NB"
+          while (locationtext != "Columbia to I-205 NB" where stationid == next_station_id){
+               next_station_id = downstream
+          }
+
 e) Update: Update stationid 1140 to have a length of 2.3.
      In the FREEWAY_STATIONS table
           set (1140, 2.3)
