@@ -2,3 +2,56 @@ Data Model - General Thoughts
 - Key/Value would probably work fine.
 - Document would work fine
 - Column or "Big Table" might be a little overkill/complicated for "first stab"
+
+Part 1: Tasks
+
+1. Aggregate for Document Model (include diagram)
+
+// ---------
+// station
+// ---------
+// consists of a "station" and the "detectors" within that station
+{
+  "stationid" : 1,
+  "highwayid" : 3,
+  "milepost" : 18.1,
+  "locationtext" : "",
+  "upstream" : "",
+  "downstream" : "",
+  "stationclass" : "",
+  "numberlanes" : "",
+  "lat" : "",
+  "lon" : "",
+  "length" : .50
+  "freeway_detectors" : [
+    {
+      "detectorid" : 1,
+      "detectorclass" :	3,
+      "lanenumber" : 2
+    },
+    {
+      /.../
+    }
+  ]
+}
+
+// ---------
+// Loop Data
+// ---------
+
+{
+  "detectorid" : ,
+  "starttime" : ,
+  "volume" : ,
+  "speed" : ,
+  "occupancy" : ,
+  "status" : ,
+  "dqflags" :
+}
+
+
+2. a. From Loop Data, if speed is > 100, add it to the count
+b. From Station Data, get detectorids for the Foster station.  From Loop Data get the count from each detector in Station results.
+c.
+d.
+e. From Station Data, update stationid 1140 to have length of 2.3.
