@@ -1,0 +1,60 @@
+The NoSQL database system chosen for Project assignment #2 is Riak.
+
+1. a.
+The data model used by Riak is key/value.
+
+1. b.
+?
+
+1. c.
+An example of using the client library (Ruby) to make the connection, create a bucket, store a simple integer:
+client = Riak::Client.new(:protocol => "pbc", :pb_port => 10017)
+my_bucket = client.bucket("my_super_cool_bucket")
+obj = my_bucket.new('one')
+obj.data = 1
+obj.store()
+[ref: http://docs.basho.com/riak/latest/dev/taste-of-riak/ruby/]
+
+2. a.
+The query language for Riak is varied. There are client libraries in Java, Ruby, Python, C#, nodeJS, Erlang, PHP, Go, and Haskel.
+Riak also has a rich, full-featured HTTP 1.1 API.
+
+2. b.
+Yes, Riak supports range queries (using secondary indexes?).  An example of a range query using the HTTP API is as follows:
+
+curl -XPOST localhost:8098/mapred\
+  -H "Content-Type: application/json" \
+  -d @-<<EOF
+{
+  "inputs": {
+    "bucket": "people",
+    "index": "field2_bin",
+    "start": "1002",
+    "end": "1004"
+  },
+  "query": [
+    {
+      "reduce": {
+        "language": "erlang",
+        "module": "riak_kv_mapreduce",
+        "function": "reduce_identity",
+        "keep": true
+      }
+    }
+  ]
+}
+EOF
+
+An example of a range query using the Ruby client library is as follows:
+bucket = client.bucket_type('indexes').bucket('people')
+bucket.get_index('field2_int', 1002..1004)
+
+2. c.
+Riak does not support Graph queries directly.  (Seems that using Search (with Solr) might allow something "close" to graph queries.)
+
+3. a.
+Yes, Riak supports indices (called Secondary Indices).  Riak also ships with Riak Search which uses Solr to create indices...
+[ref: http://docs.basho.com/riak/latest/dev/using/search/]
+
+3. b.
+Using Riak Search there are no limits on what can be indexed (seems even unknown types get an index).
