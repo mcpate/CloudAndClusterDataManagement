@@ -72,7 +72,7 @@ When using Strong consistency, you are guaranteed that you will never see innacu
 however, some operations may fail if not enough replicas are available.
 
 When using Eventual Consistency, a read may return an out-of-date value (in the occurance
-of network or system failurs), but with Eventual Consistency, read and writes will succeed
+of network or system failures), but with Eventual Consistency, read and writes will succeed
 even when clusters are experiencing poor performance.
 
 4. c.
@@ -91,7 +91,7 @@ Using the Apache 2.0 License, Riak can be used to replicate any nodes in a singl
 the commercial extension enables Riak to be used for Multi-Datacenter deployment.
 
 5. b.
-Riak does not support sharding. Instead, Riak evenly distrubutes data between all active nodes
+Riak does not support sharding. Instead, Riak evenly distributes data between all active nodes
 using consistent hashing. In Riak, consistent hashing is an automatic process. Riak claims that 
 this method makes it significantly easier for companies to scale and supports long-term growth 
 much better than sharding.
@@ -112,7 +112,7 @@ and AWS.
 If you do choose to run Riak in a cloud environment, it is suggested that you choose the 
 largest VM's possible and deploy VM's within the same region. You should also always use 
 the highest core processors available. Riak is written in Erlang which is a functional 
-programming language. This meansthat performance scales with the amount of cores/nodes availabe.
+programming language. This means that performance scales with the amount of cores/nodes available.
 
 6. c. 
 Riak officially supports the following languages:
