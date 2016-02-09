@@ -1,10 +1,17 @@
 The NoSQL database system chosen for Project assignment #2 is Riak.
 
 1. a.
-The data model used by Riak is key/value.
+The data model used by Riak is the key/value model.
 
 1. b.
-?
+The data model consists of the following objects:
+- Buckets - define a virtual keyspace and provide the ability to define isolated non-default configuration (compared to tables in Relational DBs)
+- Keys - binary values (or strings) used to identify objects
+- Objects - the only unit of storage in Riak
+- Links - metadata that establishes one-way relationships between objects
+- Indices - Secondary Indices are used to tag objects at write time with one or more querable value
+- Data Types - Flags, Registers, Counters, Sets, Maps
+- Dotted Vector Versions
 
 1. c.
 An example of using the client library (Ruby) to make the connection, create a bucket, store a simple integer:
@@ -63,7 +70,7 @@ Using Riak Search there are no limits on what can be indexed (seems even unknown
 Yes. Riak does support consistency.
 
 4. b.
-Beginning in version 2.0 of Riak, you have the option of choosing between two separate 
+Beginning in version 2.0 of Riak, you have the option of choosing between two separate
 consistency systems. Eventual Consistency and Strong Consistency. It should be noted
 that Strong Consistency is currently an open-source-only feature and isn't commercially
 supported.
@@ -76,15 +83,15 @@ of network or system failures), but with Eventual Consistency, read and writes w
 even when clusters are experiencing poor performance.
 
 4. c.
-Riak implements Consistency through versioning and vector clocks. Riak tags all objects with 
+Riak implements Consistency through versioning and vector clocks. Riak tags all objects with
 versioning information, and vector clocks keep track of which objects have been modified and when.
 This allows riak to resolve conflicts on its own by determining what the last modified value is.
 
 5. a.
 Riak supports replication. In fact, replication is automatic in Riak. All data stored in Riak
 is replicated to N number of nodes. By default N is set to 3, meaning that all data stored will
-be replicated across 3 different nodes. It should be noted that there is no guarantee that the 
-replicas will be stored on three separate physical nodes, they could be partitions or virtual 
+be replicated across 3 different nodes. It should be noted that there is no guarantee that the
+replicas will be stored on three separate physical nodes, they could be partitions or virtual
 nodes.
 
 Using the Apache 2.0 License, Riak can be used to replicate any nodes in a single cluster. Using
@@ -92,8 +99,8 @@ the commercial extension enables Riak to be used for Multi-Datacenter deployment
 
 5. b.
 Riak does not support sharding. Instead, Riak evenly distributes data between all active nodes
-using consistent hashing. In Riak, consistent hashing is an automatic process. Riak claims that 
-this method makes it significantly easier for companies to scale and supports long-term growth 
+using consistent hashing. In Riak, consistent hashing is an automatic process. Riak claims that
+this method makes it significantly easier for companies to scale and supports long-term growth
 much better than sharding.
 
 6. a.
@@ -109,12 +116,12 @@ This is to maximize performance. However, Riak supports all infrastructures incl
 Debian/Ubuntu, RHEL/CentOS, Mac OS X, FreeBSD, SmartOS, Solaris 10, SUSE, Windows Azure,
 and AWS.
 
-If you do choose to run Riak in a cloud environment, it is suggested that you choose the 
-largest VM's possible and deploy VM's within the same region. You should also always use 
-the highest core processors available. Riak is written in Erlang which is a functional 
+If you do choose to run Riak in a cloud environment, it is suggested that you choose the
+largest VM's possible and deploy VM's within the same region. You should also always use
+the highest core processors available. Riak is written in Erlang which is a functional
 programming language. This means that performance scales with the amount of cores/nodes available.
 
-6. c. 
+6. c.
 Riak officially supports the following languages:
 
 Java, Ruby, Python, C#, Node.js, PHP, Erlang, Go.
