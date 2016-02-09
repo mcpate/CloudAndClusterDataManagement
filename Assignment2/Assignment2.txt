@@ -58,3 +58,69 @@ Yes, Riak supports indices (called Secondary Indices).  Riak also ships with Ria
 
 3. b.
 Using Riak Search there are no limits on what can be indexed (seems even unknown types get an index).
+
+4. a.
+Yes. Riak does support consistency.
+
+4. b.
+Beginning in version 2.0 of Riak, you have the option of choosing between two separate 
+consistency systems. Eventual Consistency and Strong Consistency. It should be noted
+that Strong Consistency is currently an open-source-only feature and isn't commercially
+supported.
+
+When using Strong consistency, you are guaranteed that you will never see innacurate values,
+however, some operations may fail if not enough replicas are available.
+
+When using Eventual Consistency, a read may return an out-of-date value (in the occurance
+of network or system failures), but with Eventual Consistency, read and writes will succeed
+even when clusters are experiencing poor performance.
+
+4. c.
+Riak implements Consistency through versioning and vector clocks. Riak tags all objects with 
+versioning information, and vector clocks keep track of which objects have been modified and when.
+This allows riak to resolve conflicts on its own by determining what the last modified value is.
+
+5. a.
+Riak supports replication. In fact, replication is automatic in Riak. All data stored in Riak
+is replicated to N number of nodes. By default N is set to 3, meaning that all data stored will
+be replicated across 3 different nodes. It should be noted that there is no guarantee that the 
+replicas will be stored on three separate physical nodes, they could be partitions or virtual 
+nodes.
+
+Using the Apache 2.0 License, Riak can be used to replicate any nodes in a single cluster. Using
+the commercial extension enables Riak to be used for Multi-Datacenter deployment.
+
+5. b.
+Riak does not support sharding. Instead, Riak evenly distributes data between all active nodes
+using consistent hashing. In Riak, consistent hashing is an automatic process. Riak claims that 
+this method makes it significantly easier for companies to scale and supports long-term growth 
+much better than sharding.
+
+6. a.
+Riak data is usually stored on an SSD. In fact, it is recommended that the fastest
+SSD's possible are used to store Riak data, as well as possibly configuring RAID0
+to further increase read/write speed.
+RAM is also used to temporarily store data in order to increase performance even further.
+Riak will take advantage of all available RAM by holding as much data there as it can.
+
+6. b.
+It is recommended that Riak is not run in the cloud or on a virtual cluster.
+This is to maximize performance. However, Riak supports all infrastructures including:
+Debian/Ubuntu, RHEL/CentOS, Mac OS X, FreeBSD, SmartOS, Solaris 10, SUSE, Windows Azure,
+and AWS.
+
+If you do choose to run Riak in a cloud environment, it is suggested that you choose the 
+largest VM's possible and deploy VM's within the same region. You should also always use 
+the highest core processors available. Riak is written in Erlang which is a functional 
+programming language. This means that performance scales with the amount of cores/nodes available.
+
+6. c. 
+Riak officially supports the following languages:
+
+Java, Ruby, Python, C#, Node.js, PHP, Erlang, Go.
+
+In Addition to this, there are libraries written for the following languages that are
+not officially supported but are being used:
+
+C/C++, Clojure, ColdFusion, Common Lisp, Dart, Django, Erlang, Grails, Griffon, Groovy,
+Haskell, OCaml, Perl, Racket, Scala, Smalltalk.
