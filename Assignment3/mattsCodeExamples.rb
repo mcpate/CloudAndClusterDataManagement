@@ -29,7 +29,18 @@ station_data = {
     :shortDirection => "NORTH",
     :highwayName => "I-205"
   },
-  :dectectorIds => [1345, 1346, 1347, 1348]
+  :dectectors => [
+    { 
+      :detectorId => 1345,
+      :laneNumber => 1,
+      :detectorClass => 1
+    },
+    {
+      :detectorId => 1347,
+      :laneNumber => 2,
+      :detectorClass => 1
+    }
+  ]
 }
 
 new_station = stations_bucket.new("1045")
