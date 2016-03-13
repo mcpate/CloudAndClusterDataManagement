@@ -86,7 +86,8 @@ CSV.foreach("/tmp/freeway_loopdata.csv") do |row|
   loopdata_data[:status] = row[5]
   loopdata_data[:dqflags] = row[6]
 
-  new_loopdata = loopdata_bucket.new(row[0].to_s)
+  # let random key be generated here
+  new_loopdata = loopdata_bucket.new()
   new_loopdata.data = loopdata_data
   new_loopdata.store()
 end
