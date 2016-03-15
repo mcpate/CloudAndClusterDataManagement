@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 require 'csv'
-require 'riak-client'
+require 'riak'
 
 # finds the highway by primary key and builds a hash of its fields
 def buildHighwayHash(highway_pk, highway_rows)
@@ -47,10 +47,14 @@ detector_rows = CSV.read("/tmp/freeway_detectors.csv")
 client = Riak::Client.new(:pb_port => 8087)
 
 # get the bucket we're going to add all stations to
+puts "Creating stations bucket..."
+#stations_index = client.create_search_index("stations_idx");
 stations_bucket = client.bucket("stations")
+#stations_bucket.properties = {"search_index" => "stations_idx"}
 
 # build and add all stations
 puts "Inserting stations..."
+num_inserted = 0
 station_rows.each do |row|
   station_data = {}
   station_data[:stationid] = row[0]
@@ -68,14 +72,19 @@ station_rows.each do |row|
   new_station = stations_bucket.new(row[0].to_s)
   new_station.data = station_data
   new_station.store()
+  num_inserted = num_inserted + 1
 end
-puts "Done."
+puts "Done. " + num_inserted.to_s + " k/v pairs inserted."
 
 # get the bucket we're putting all loopdata in
+puts "Creating loopdata bucket..."
+#loopdata_index = client.create_search_index("loopdata_idx")
 loopdata_bucket = client.bucket("loopdata")
+#loopdata_bucket.properties = {"search_index" => "loopdata_idx"}
 
 # read through loopdata one row at a time and insert
 puts "Inserting loopdata..."
+num_inserted = 0
 CSV.foreach("/tmp/freeway_loopdata.csv") do |row|
   loopdata_data = {}
   loopdata_data[:detectorid] = row[0]
@@ -90,5 +99,7 @@ CSV.foreach("/tmp/freeway_loopdata.csv") do |row|
   new_loopdata = loopdata_bucket.new()
   new_loopdata.data = loopdata_data
   new_loopdata.store()
+  num_inserted = num_inserted + 1
 end
-puts "Done."
+puts "Done. " + num_inserted.to_s + " k/v pairs inserted."
+puts "Finished."
